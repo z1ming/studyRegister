@@ -30,7 +30,7 @@ def addStudent(firstName, lastName, major):
         if (id not in ids):
             break
     std = str(id) + "," + firstName + "," + lastName + "," + str(
-        datetime.now().year) + "," + major + "," + firstName + lastName + "@lut.fi"
+        datetime.now().year) + "," + major + "," + firstName + "." + lastName + "@lut.fi"
     writeFile(studentsFile, [std])
 
 
@@ -143,15 +143,14 @@ def searchGrades(studentId):
     return ans
 
 
-
-
-
 def addCourseCompletion(courseId, studentId, grade, dt):
     record = searchGrade(courseId, studentId)
     if not record:
         writeFile(passedFile, [courseId + "," + studentId + "," + dt.strftime("%d/%m/%Y") + "," + grade])
     else:
-        updateFile(passedFile, courseId + "," + studentId, courseId + "," + studentId + "," + dt.strftime("%d/%m/%Y") + "," + grade + "\n")
+        updateFile(passedFile, courseId + "," + studentId,
+                   courseId + "," + studentId + "," + dt.strftime("%d/%m/%Y") + "," + grade + "\n")
+
 
 def openFile(fileName):
     data = list()
@@ -175,6 +174,8 @@ def writeFile(fileName, records):
             file.write(record + '\n')
     # 关闭文件
     file.close()
+
+
 def updateFile(fileName, key, param):
     with open(fileName, 'r+') as file:
         lines = file.readlines()
@@ -190,4 +191,3 @@ def updateFile(fileName, key, param):
         file.truncate()
         file.writelines(lines)
     file.close()
-
