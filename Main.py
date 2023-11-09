@@ -1,7 +1,7 @@
 import datetime
 
+import Menu
 from MajorEnum import MajorEnum
-from Menu import MenuIface
 def printStartMenu():
     print("You may select one of the following:\n" +
           " 1) Add student\n" +
@@ -52,7 +52,7 @@ def addStudent():
         if MajorEnum.contains(major):
             break
 
-    menu.addStudent(first_name, last_name, major)
+    Menu.addStudent(first_name, last_name, major)
     print("Student added successfully!")
 
 
@@ -69,12 +69,12 @@ def searchStudent():
         if checkSearchValue(search_value):
             break
 
-    students = menu.searchStudentByName(search_value)
+    students = Menu.searchStudentByName(search_value)
 
     if students:
         print("Matching students:")
         for student in students:
-            print(f"ID: {student.id}, First name: {student.first_name}, Last name: {student.last_name}")
+            print(f"ID: {student.id}, First name: {student.firstName}, Last name: {student.lastName}")
 
 
 def searchCourse():
@@ -82,7 +82,7 @@ def searchCourse():
         searchValue = input("Give at least 3 characters of the name of the course or the teacher:")
         if len(searchValue) >= 3:
             break
-    cources = menu.searchCourseByName(searchValue)
+    cources = Menu.searchCourseByName(searchValue)
     if not cources:
         for cource in cources:
             print(f"ID: {cource.code}, Name: {cource.name}, Teacher(s): {cource.teacher}")
@@ -90,12 +90,12 @@ def searchCourse():
 def addCourseCompletion():
     while True:
         courseId = input("Give the course ID:")
-        course = menu.searchCourseById(courseId)
+        course = Menu.searchCourseById(courseId)
         if not course:
             break
     while True:
         studentId = input("Give the student ID:")
-        student = menu.searchStudentById(int(studentId))
+        student = Menu.searchStudentById(int(studentId))
         if not student:
             break
     while True:
@@ -107,7 +107,7 @@ def addCourseCompletion():
         # todo datetime and try catch
         dt = input("Enter a date (DD/MM/YYYY):")
         break
-    menu.addCourseCompletion(course.code, student.id, grade)
+    Menu.addCourseCompletion(course.code, student.id, grade)
     print("Record added!")
 
 
@@ -115,13 +115,12 @@ def addCourseCompletion():
 
 def showStudentRecord():
     studentId = input("Student ID:")
-    student = menu.searchStudentById(studentId)
-    courses = menu.searchCourseByName("xxx")
+    # student = menu.searchStudentById(studentId)
+    # courses = menu.searchCourseByName("xxx")
     print("xxxxxx")
 
 
 if __name__ == "__main__":
-    menu = MenuIface()
     while True:
         exit = False
         printStartMenu()
