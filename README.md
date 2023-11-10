@@ -2,9 +2,14 @@
 
 English｜[中文](./readme_ch.md)
 
-a study register for a university.
+a study register for a university. 
 
 Your system will rely on three text files, which contain the data needed to run the system. The idea is that while running your program, the content of these files change. 
+
+- [More detail_1](./resource/detail1.png)
+- [More detail_2](./resource/detail2.png)
+- [More detail_3](./resource/detail3.png)
+- [More detail_4](./resource/detail4.png)
 
 ## 特点
 
